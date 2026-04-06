@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proposal-service
+  namespace: offeria
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: proposal-service
+  template:
+    metadata:
+      labels:
+        app: proposal-service
+    spec:
+      containers:
+        - name: proposal-service
+          image: offeria/proposal-service:latest
+          ports:
+            - containerPort: 8087
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: proposal-service
+  namespace: offeria
+spec:
+  selector:
+    app: proposal-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8087
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: proposal-service-config
+  namespace: offeria
+data:
+  SPRING_PROFILES_ACTIVE: "prod"
