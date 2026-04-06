@@ -1,3 +1,36 @@
 spring:
   application:
     name: proposal-service
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/proposals_db}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+app:
+  kafka:
+    topics:
+      technical-generated: proposal.technical.generated
+      commercial-generated: proposal.commercial.generated
+
+logging:
+  level:
+    offeria.proposal_service: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+
+server:
+  port: 8080

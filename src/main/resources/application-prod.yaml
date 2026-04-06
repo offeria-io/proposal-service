@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: ${PROD_DB_URL}
+    username: ${PROD_DB_USERNAME}
+    password: ${PROD_DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  kafka:
+    bootstrap-servers: ${PROD_KAFKA_SERVERS}
+
+logging:
+  level:
+    offeria.proposal_service: INFO
+    org.hibernate.SQL: ERROR
