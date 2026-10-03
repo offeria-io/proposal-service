@@ -1,5 +1,9 @@
 # Proposal Service
 
+**Offeria — a product by [Al‑Wahha Al‑Sehriya](https://github.com/Al-Wahha-Al-Sehriya).**
+
+[Company website](https://wahasehriya.com/) · [Offeria repositories](https://github.com/offeria-io)
+
 ## Description
 The Proposal Service manages the lifecycle of business proposals in the Offeria platform. It allows users to create, update, and track technical and commercial proposals in response to RFQs.
 
